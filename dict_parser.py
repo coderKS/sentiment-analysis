@@ -29,9 +29,9 @@ def get_seeddict(worddict):
 # positive_words = ['good', 'well']
 # negative_words = ['hate', 'bad']
 # worddict = {'good': 1, 'bad':-1,'like': 1, 'hate':-1}
-def parse_words(positive_words, negative_words):
+def parse_words(positive_path, negative_path):
 	# init positive dictionary
-	with open ("data/positive.txt", "r") as f:
+	with open (positive_path, "r") as f:
 	  posText = f.read()
 	posTokens = posText.split()
 
@@ -41,7 +41,7 @@ def parse_words(positive_words, negative_words):
 		worddict[posTokens[x]] = 1
 
 	# init negative dictionary
-	with open ("data/negative.txt", "r") as f:
+	with open (negative_path, "r") as f:
 	  negText = f.read()
 	negTokens = negText.split()
 
