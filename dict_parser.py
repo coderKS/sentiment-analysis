@@ -30,4 +30,24 @@ def get_seeddict(worddict):
 # negative_words = ['hate', 'bad']
 # worddict = {'good': 1, 'bad':-1,'like': 1, 'hate':-1}
 def parse_words(positive_words, negative_words):
+	# init positive dictionary
+	with open ("data/positive.txt", "r") as f:
+	  posText = f.read()
+	posTokens = posText.split()
+
+	# score dictionary items (1)
+	worddict = {}
+	for x in xrange(0,len(posTokens)):
+		worddict[posTokens[x]] = 1
+
+	# init negative dictionary
+	with open ("data/negative.txt", "r") as f:
+	  negText = f.read()
+	negTokens = negText.split()
+
+	# score dictionary items (-1)
+	for x in xrange(0,len(negTokens)):
+		worddict[negTokens[x]] = -1
+
+	return worddict
 
