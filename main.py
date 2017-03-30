@@ -1,40 +1,19 @@
-from nltk import word_tokenize, sent_tokenize
+from calculator import get_document_score
 from dict_parser import get_seeddict, parse_words
 
-def get_score(word, seed_dict):
-	if word in seed_dict:
-		return seed_dict[word]
-	else: 
-		return 0
+# parameters
+positive_words_path = 'data/positive.txt'
+negative_words_path = 'data/negative.txt'
+documents = ['data/1155049829.txt', 'data/1155047854.txt', 'data/LAW_Yue_Hei.txt', 'data/Tse_Ching_Hin.txt']
+documents_scores = dict()
 
-def get_document_score(document_path):
-	
-	with open (document_path, mode='r') as file_in:
-		test_txt = file_in.read()
+# start program
+print ("Parsing positive and negative words\n")
+word_dict = parse_words(positive_words_path, negative_words_path)
+print ("Getting synonyms and antonyms\n")
+seed_dict = get_seeddict(word_dict)
 
-	sent_tokens = sent_tokenize(test_txt)
-	word_tokens = []
-	for sent in sent_tokens:
-		word_token = word_tokenize(sent)
-		word_tokens.append(word_token)
+for document in documents:
+	documents_scores[document] = get_document_score(document, seed_dict)
 
-	print ("ready to parse words")
-	word_dict = parse_words('data/positive.txt','data/negative.txt')
-
-	print ("ready to get seed dict")
-	seed_dict = get_seeddict(word_dict)
-
-	print ("ready to calculate score")
-	score = 0.0
-	for sent in word_tokens:
-		for word in sent:
-			# print "words = " + word
-			score = score + get_score(word, seed_dict)
-
-	score = score / len(word_tokens)
-	return score
-
-documents = ['data/1155049829.txt', 'data/1155047854.txt']
-for document in documents
-	score = get_document_score(document)
-	print score
+print documents_scores
