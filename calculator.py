@@ -20,11 +20,13 @@ def get_document_score(document_path, seed_dict):
 		word_tokens.append(word_token)
 	
 	score = 0.0
+	words_count = 0
 	for sent in word_tokens:
 		for word in sent:
 			score = score + get_word_score(word, seed_dict)
+			words_count = words_count + 1
 
-	score = score / len(word_tokens)
+	score = score / words_count 
 
 	print ("   score = %f" % score)
 	return score
