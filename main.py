@@ -4,7 +4,8 @@ from dict_parser import get_seeddict, parse_words
 # parameters
 positive_words_path = 'data/positive.txt'
 negative_words_path = 'data/negative.txt'
-documents = ['data/1155049829.txt', 'data/1155047854.txt', 'data/LAW_Yue_Hei.txt', 'data/Tse_Ching_Hin.txt']
+# documents = ['data/1155049829.txt', 'data/1155047854.txt', 'data/LAW_Yue_Hei.txt', 'data/Tse_Ching_Hin.txt']
+documents = ['https://kamshingblog.wordpress.com', 'https://ierg3320aplus.wordpress.com/', 'https://ierg3320site.wordpress.com/', 'https://kelvin0218xierg3320.wordpress.com/']
 documents_scores = dict()
 
 # start program
