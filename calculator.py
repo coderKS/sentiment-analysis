@@ -8,8 +8,6 @@ def get_word_score(word, seed_dict):
 		return 0
 
 def get_document_score(document_path, seed_dict):
-	print ("calculating the score of %s" % document_path)
-
 	# with open (document_path, mode='r') as file_in:
 	# 	test_txt = file_in.read()
 
@@ -42,13 +40,13 @@ def get_document_score(document_path, seed_dict):
 			break
 		score_word1 = get_word_score(word_list[i], seed_dict)
 		score_word2 = get_word_score(word_list[i+1], seed_dict)
-		if (score_word1 == 1 and score_word2 == -1) or (score_word1 == -1 and score_word2 == 1):
-			new_score = new_score + 1
+		if (score_word1 < 0.0 and score_word2 > 0.0):
+			new_score = new_score + score_word2
 
 	new_score = score - new_score
 	score = score / words_count 
 	new_score = new_score / words_count
 
 	print ("   score = %f" % score)
-	print ("   pairwise comparison score = %f" % new_score)
+	print ("   score after pairwise comparison = %f" % new_score)
 	return score
